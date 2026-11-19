@@ -1,65 +1,94 @@
 # 🚗 Cars Assistant
 
-An AI-powered web app that extends my **Cars EDA project** with an ML price predictor and a Gemini-powered Q&A assistant.
+A Streamlit web app that extends my **Cars EDA project** with an interactive dashboard, a machine learning price predictor and an optional AI question-answering tab.
 
-> Built for **Module 05: AI Tools & Mini Project**.
+> Built for **Module 05: AI Tools & Mini Project**
+
+---
 
 ## ✨ Features
-- 📊 **Interactive EDA dashboard** with year and fuel filters (distribution, price by fuel, price vs km, correlation heatmap)
-- 💰 **Price predictor** using a Random Forest regression model
-- 🤖 **Ask AI**: ask questions about the dataset in plain English using the Google Gemini API
+
+- 📊 **Interactive EDA dashboard**: filter by year and fuel type and explore the price distribution, average price by fuel type, price vs km driven and a correlation heatmap
+- 💰 **Price predictor**: a Random Forest model estimates a used car's selling price from its year, km driven, showroom price, number of owners, fuel type, seller type and transmission
+- 🤖 **Ask AI (optional)**: ask questions about the dataset in plain English using the Google Gemini API. This tab needs your own free API key; the rest of the app works without it
 
 ## 🛠 Tech Stack
+
 Python · Pandas · Plotly · Scikit-learn · Streamlit · Google Gemini API
 
 ## 📸 Screenshots
+
 | Dashboard | Price Predictor |
 |---|---|
 | ![Dashboard](screenshots/dashboard.png) | ![Predictor](screenshots/predictor.png) |
 
 ## 🚀 How to Run
-```bash
-git clone https://github.com/<your-username>/cars-assistant.git
-cd cars-assistant
-pip install -r requirements.txt
 
-# Windows PowerShell
-$env:GEMINI_API_KEY="your_key"
-# Mac/Linux
-# export GEMINI_API_KEY="your_key"
-
-streamlit run app.py
-```
-Get a free API key at [Google AI Studio](https://aistudio.google.com). You can also paste the key in the app's sidebar. **Never commit your key.**
+1. Download or clone this repository:
+   ```bash
+   git clone https://github.com/rudrakshsivam/cars-assistant-without-api-key.git
+   cd cars-assistant-without-api-key
+   ```
+2. Install the requirements:
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
+3. Start the app:
+   ```bash
+   python -m streamlit run app.py
+   ```
+4. *(Optional)* To use the **Ask AI** tab, get a free key from [Google AI Studio](https://aistudio.google.com) and paste it into the sidebar box in the app. Never upload your key to GitHub.
 
 ## 📂 Dataset
-`data/cars.csv`: 301 used cars with columns Car_Name, Year, Selling_Price, Present_Price, Kms_Driven, Fuel_Type, Seller_Type, Transmission, Owner (prices are in lakhs of rupees). Column names are configured at the top of `app.py`.
 
-> **Note on accuracy:** the model scores about 0.96 R² on the default test split, but the score varies with the split (roughly 0.5 to 0.96) because the dataset is small (301 rows) and has a few very expensive outlier cars.
+`data/cars.csv` contains 301 used cars with these columns:
+
+| Column | Meaning |
+|---|---|
+| Car_Name | Car model |
+| Year | Year of purchase |
+| Selling_Price | Price the car sold for (in lakhs of rupees) |
+| Present_Price | Showroom price of the car when new (in lakhs) |
+| Kms_Driven | Kilometres driven |
+| Fuel_Type | Petrol, Diesel or CNG |
+| Seller_Type | Dealer or Individual |
+| Transmission | Manual or Automatic |
+| Owner | Number of previous owners |
+
+## 📊 Model Results
+
+- Model: Random Forest Regressor (200 trees)
+- Train/test split: 80% / 20%
+- Accuracy on the test set: **R² ≈ 0.96**
+
+> The score changes with the split (roughly 0.5 to 0.96) because the dataset is small and a few very expensive cars act as outliers.
 
 ## 🔍 AI Tools Exploration
-I gave the same coding prompt to three AI tools and compared them.
 
-| Tool | Code quality | Explanation clarity | Speed | Best used for |
-|---|---|---|---|---|
-| ChatGPT | _fill in_ | _fill in_ | _fill in_ | _fill in_ |
-| Gemini | _fill in_ | _fill in_ | _fill in_ | _fill in_ |
-| Copilot | _fill in_ | _fill in_ | _fill in_ | _fill in_ |
+For this module I explored popular AI tools and how they support a project like this.
+
+| Tool | Where it helps most |
+|---|---|
+| **ChatGPT** | Explaining code step by step and debugging errors |
+| **Gemini** | Quick answers, data questions and the API used in this app's Ask AI tab |
+| **Microsoft Copilot** | Code suggestions and quick help while writing |
 
 **How AI tools help**
-- **Coding:** _fill in 2-3 lines_
-- **Research:** _fill in 2-3 lines_
-- **Productivity:** _fill in 2-3 lines_
+- **Coding:** they generate starter code, explain errors and suggest fixes, which speeds up building and debugging.
+- **Research:** they summarise concepts such as Random Forest and evaluation metrics quickly, though the answers still need checking.
+- **Productivity:** they help draft documentation, README files and project posts, saving time on writing.
 
 ## 💡 What I Learned
-- How to call an AI API from Python and use it inside an app
+
 - Turning EDA work into an interactive Streamlit dashboard
-- Training and using a simple regression model
-- AI tools are great pair-programmers, but I still need to understand and test the code
+- Training and testing a regression model with Scikit-learn
+- How to connect an AI API to an app
+- AI tools are great helpers, but I still need to understand and test the code myself
 
 ## 🔗 Links
+
 - Original EDA project (Colab): https://colab.research.google.com/drive/1ydsQT52mH1BNA-KkTPddwuc9EhzH1U0N?usp=sharing
-- Live demo: _add your Streamlit link if deployed_
 
 ## 👤 Author
-**Rudraksh Sivam K U** · 25IT301
+
+**Rudraksh Sivam K U** · 
